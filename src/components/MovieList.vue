@@ -1,7 +1,7 @@
 <template>
   <div class="films-list">
-    <div v-if="films.length">
       <MovieCard
+          v-if="films.length"
           v-for="film in films"
           :key="film.title"
           :film="film"
@@ -9,7 +9,6 @@
           :selectedCharacterUrl.sync="selectedCharacterUrls[film.title]"
           @update:selectedCharacterUrl="updateCharacterUrl(film.title, $event)"
       />
-    </div>
     <div v-else>
       Loading...
     </div>
@@ -25,8 +24,7 @@ import CharacterDetails from './CharacterDetails.vue';
 export default defineComponent({
   name: 'FilmsList',
   components: {
-    MovieCard,
-    CharacterDetails
+    MovieCard
   },
   setup() {
     const films = ref<Film[]>([]);
@@ -82,84 +80,12 @@ export default defineComponent({
 <style>
 .films-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Adjust based on your needs */
+  grid-template-columns: repeat(2, 1fr); /* Two columns */
   gap: 1rem; /* Space between cards */
   padding: 1rem;
 }
 
-.films-list > * {
+.film-list > * {
   margin: 0;
-}
-
-.movie-card {
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 1em;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  display: grid;
-  grid-template-areas:
-    "title title"
-    "opening-crawl opening-crawl"
-    "details details"
-    "character-selector character-selector";
-  grid-gap: 1em;
-  max-width: 100%;
-}
-
-.title {
-  grid-area: title;
-  font-size: 1.5em;
-  margin: 0;
-  color: #333;
-}
-
-.opening-crawl {
-  grid-area: opening-crawl;
-  font-style: italic;
-  color: #555;
-}
-
-.details {
-  grid-area: details;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.details li {
-  margin-bottom: 0.5em;
-}
-
-.details strong {
-  color: #333;
-}
-
-.character-selector {
-  grid-area: character-selector;
-}
-
-select {
-  width: 100%;
-  padding: 0.5em;
-  border-radius: 4px;
-  border: 1px solid #ddd;
-  font-size: 1em;
-}
-
-select:focus {
-  border-color: #007bff;
-  outline: none;
-}
-
-label {
-  display: block;
-  margin-bottom: 0.5em;
-  font-weight: bold;
-  color: #333;
-}
-
-.character-details {
-  margin-top: 1em;
 }
 </style>

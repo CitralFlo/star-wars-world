@@ -81,19 +81,19 @@ export default defineComponent({
 .movie-card {
   display: grid;
   grid-template-areas:
-    "title title"
-    "opening-crawl opening-crawl"
-    "details details"
-    "character-selector character-selector";
-  grid-gap: 1em;
+    "title"
+    "opening-crawl"
+    "details"
+    "character-selector";
+  gap: 1em;
   background: #000; /* Black background */
   color: #fff; /* White text */
   border: 2px solid #ffd700; /* Yellow border */
   border-radius: 8px;
   padding: 1em;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-  max-width: 600px;
-  margin: 1em auto;
+  width: 100%; /* Ensure it fits within grid cells */
+  box-sizing: border-box;
 }
 
 .title {
